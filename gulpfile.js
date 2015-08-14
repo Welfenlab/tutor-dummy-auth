@@ -18,6 +18,4 @@ gulp.task("watch", function(){
     .pipe(gulp.dest('./lib/'))
 });
 
-gulp.task("build", ["bundle", "transpile"]);
-
 gulp.task("default", ["build"]);
