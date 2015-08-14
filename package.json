@@ -1,0 +1,24 @@
+{
+  "name": "@tutor/dummy-auth",
+  "version": "0.1.0",
+  "description": "Simply authentification for Tutor, always accepting login data.",
+  "main": "./lib/auth.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "gulp": "~3.8.11",
+    "gulp-coffee": "^2.3.1",
+    "gulp-plumber": "^1.0.1",
+    "gulp-util": "^3.0.6",
+    "gulp-watch": "^4.3.3",
+    "mocha": "^2.2.5",
+    "vinyl-source-stream": "~1.0.0"
+  },
+  "author": "Maximilian Klein <dasmaxl@gmail.com> (https://github.com/LittleHelicase)",
+  "license": "MIT",
+  "dependencies": {
+    "express-session": "^1.11.3",
+    "lodash": "^3.10.0"
+  }
+}
