@@ -17,3 +17,7 @@ gulp.task("watch", function(){
     .pipe(coffee({bare: true}).on('error', gutil.log))
     .pipe(gulp.dest('./lib/'))
 });
+
+gulp.task("build", ["bundle", "transpile"]);
+
+gulp.task("default", ["build"]);
