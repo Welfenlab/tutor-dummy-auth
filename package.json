@@ -16,7 +16,12 @@
     "mocha": "^2.2.5",
     "vinyl-source-stream": "~1.0.0"
   },
-  "author": "Maximilian Klein <dasmaxl@gmail.com> (https://github.com/LittleHelicase)",
+  "repository": "github:Welfenlab/tutor-dummy-auth",
+  "contributors" : [
+    "Maximilian Klein <dasmaxl@gmail.com> (https://github.com/LittleHelicase)",
+    "Maik Marschner (https://github.com/leMaik)",
+    "Tim Ebbeke (https://github.com/5cript)"
+  ],
   "license": "MIT",
   "dependencies": {
     "express-session": "^1.11.3",
