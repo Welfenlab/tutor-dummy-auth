@@ -19,7 +19,7 @@ module.exports = (userExists) ->
         else
           req.session.id = req.body.id
           req.session.save (err) ->
-          res.status(202).json {}
+          res.status(204).end()
 
     # affects all app... requests after this one
     # the only accessable thing before logging in is the login form
@@ -32,4 +32,4 @@ module.exports = (userExists) ->
 
     app.use "/api/logout", (req, res) ->
       req.session.destroy()
-      res.status(202).json {}
+      res.status(204).end()
