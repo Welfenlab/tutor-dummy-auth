@@ -17,14 +17,14 @@ module.exports = (userExists) ->
         if err or !exists
           res.status(401).end()
         else
-          req.session.id = req.body.id
+          req.session.uid = req.body.id
           req.session.save (err) ->
           res.status(204).end()
 
     # affects all app... requests after this one
     # the only accessable thing before logging in is the login form
     app.use "/api", (req, res, next) ->
-      if !req.session.id?
+      if !req.session.uid?
         res.location(config.session.login_redirect)
         next new Error "Please login before accesing the App"
       else
