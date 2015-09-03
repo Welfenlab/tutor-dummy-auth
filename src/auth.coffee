@@ -1,7 +1,7 @@
 
 session = require 'express-session'
 
-module.exports = (userExists) ->
+module.exports = (userExists, devUser) ->
   (app, config) ->
     app.use session(
       secret: config.session.secret
@@ -24,6 +24,8 @@ module.exports = (userExists) ->
     # affects all app... requests after this one
     # the only accessable thing before logging in is the login form
     app.use "/api", (req, res, next) ->
+      if devUser and !req.session.uid?
+        req.session.uid = devUser
       if !req.session.uid?
         res.location(config.session.login_redirect)
         next new Error "Please login before accesing the App"
