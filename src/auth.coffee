@@ -1,7 +1,7 @@
 
 session = require 'express-session'
 
-module.exports = (userPseudonym, devUser) ->
+module.exports = (userExists, devUser) ->
   (app, config) ->
     app.use session(
       secret: config.session.secret
@@ -13,21 +13,23 @@ module.exports = (userPseudonym, devUser) ->
 
     app.use "/api/login", (req, res) ->
       # dummy auth sets everyone to 123 and accepts only 123
-      userPseudonym(req.body.id).then((pseudonym) ->
-        req.session.pseudonym = pseudonym
-        console.log "api login", req.session
+      userExists(req.body.id).then((exists) ->
+        if !exists
+          console.log "user does not exists #{req.body.id}"
+          res.status(401).end()
+        req.session.uid = req.body.id
         req.session.save (err) ->
         res.status(204).end())
-        .catch((err) -> 
-          res.status(401).end()
-        )
+      .catch((err) ->
+        console.error err
+        res.status(500).end())
 
     # affects all app... requests after this one
     # the only accessable thing before logging in is the login form
     app.use "/api", (req, res, next) ->
-      if devUser and !req.session.pseudonym?
-        req.session.pseudonym = devUser
-      if !req.session.pseudonym?
+      if devUser and !req.session.uid?
+        req.session.uid = devUser
+      if !req.session.uid?
         res.location(config.session.login_redirect)
         next new Error "Please login before accesing the App"
       else
