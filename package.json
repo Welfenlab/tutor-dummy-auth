@@ -1,6 +1,6 @@
 {
   "name": "@tutor/dummy-auth",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Simply authentification for Tutor, always accepting login data.",
   "main": "./lib/auth.js",
   "scripts": {
