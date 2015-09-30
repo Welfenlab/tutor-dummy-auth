@@ -4,7 +4,6 @@
   "description": "Simply authentification for Tutor, always accepting login data.",
   "main": "./lib/auth.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "prepublish" : "node node_modules/gulp/bin/gulp.js"
   },
   "devDependencies": {
