@@ -17,6 +17,7 @@ module.exports = (userExists, devUser) ->
         if !exists
           console.log "user does not exists #{req.body.id}"
           res.status(401).end()
+          return
         req.session.uid = req.body.id
         req.session.save (err) ->
         res.status(204).end())
