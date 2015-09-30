@@ -1,10 +1,10 @@
 {
   "name": "@tutor/dummy-auth",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Simply authentification for Tutor, always accepting login data.",
   "main": "./lib/auth.js",
   "scripts": {
-    "prepublish" : "node node_modules/gulp/bin/gulp.js"
+    "prepublish": "node node_modules/gulp/bin/gulp.js"
   },
   "devDependencies": {
     "gulp": "~3.8.11",
@@ -16,7 +16,7 @@
     "vinyl-source-stream": "~1.0.0"
   },
   "repository": "github:Welfenlab/tutor-dummy-auth",
-  "contributors" : [
+  "contributors": [
     "Maximilian Klein <dasmaxl@gmail.com> (https://github.com/LittleHelicase)",
     "Maik Marschner (https://github.com/leMaik)",
     "Tim Ebbeke (https://github.com/5cript)"
