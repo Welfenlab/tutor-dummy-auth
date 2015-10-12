@@ -1,11 +1,11 @@
 
 session = require 'express-session'
 
-module.exports = (con, userLogin) ->
+module.exports = (con, rethinkdb, userLogin) ->
   (app, config) ->
-    if(con)
+    if(con && rethinkdb)
       console.log("using rethinkdb store!")
-      RDBStore = require('express-session-rethinkdb')(session, con);
+      RDBStore = require('express-session-rethinkdb')(session, con, rethinkdb);
       
       
       rDBStore = new RDBStore({
