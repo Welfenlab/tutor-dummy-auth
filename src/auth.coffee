@@ -1,15 +1,35 @@
 
 session = require 'express-session'
 
-module.exports = (userLogin) ->
+module.exports = (con, userLogin) ->
   (app, config) ->
-    app.use session(
-      secret: config.session.secret
-      saveUninitialized: true    # FIXME: true? yes/no?
-      resave: true               # FIXME: true? yes/no?
-      cookie:
-        secure: config.ssl.enable
-    )
+    if(con)
+      console.log("using rethinkdb store!")
+      RDBStore = require('express-session-rethinkdb')(session, con);
+      
+      
+      rDBStore = new RDBStore({
+        table: 'session',
+        sessionTimeout: 1209600, # two weeks
+        flushInterval: 60000
+      });
+      
+      app.use session(
+        secret: config.session.secret
+        saveUninitialized: true    # FIXME: true? yes/no?
+        resave: true               # FIXME: true? yes/no?
+        cookie:
+          secure: config.ssl.enable
+        store: rDBStore
+      )
+    else
+      app.use session(
+        secret: config.session.secret
+        saveUninitialized: true    # FIXME: true? yes/no?
+        resave: true               # FIXME: true? yes/no?
+        cookie:
+          secure: config.ssl.enable
+      )
 
     app.use "/api/login", (req, res) ->
       userLogin(req.body.id, req.body.password).then((correct) ->
